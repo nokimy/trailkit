@@ -1,0 +1,338 @@
+<html><head><base href="https://therunnerjar.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Runner Jar - Your Repository of Trail Running Tools</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Circular:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary-color: #ffffff;
+        --secondary-color: #f7f6f3;
+        --text-color: #37352f;
+        --background-color: #ffffff;
+        --card-color: #ffffff;
+        --border-color: #e0e0e0;
+        --hover-color: #f1f1ef;
+        --accent-color: #2E8B57;
+    }
+
+    body {
+        font-family: 'Circular', -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+        color: var(--text-color);
+        background-color: var(--background-color);
+        line-height: 1.6;
+    }
+
+    header {
+        background: var(--primary-color);
+        padding: 1rem 2rem;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        margin: 0;
+    }
+
+    nav ul {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin-left: 2rem;
+    }
+
+    nav ul li a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+        color: var(--accent-color);
+    }
+
+    .search-container {
+        margin: 2rem auto;
+        max-width: 600px;
+        position: relative;
+    }
+
+    #search-input {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 30px;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #search-input:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(46, 139, 87, 0.2);
+    }
+
+    #search-button {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--accent-color);
+        font-size: 1.2rem;
+        cursor: pointer;
+    }
+
+    .categories {
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .category-button {
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+        padding: 0.5rem 1rem;
+        margin: 0.5rem;
+        border-radius: 20px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .category-button:hover {
+        background-color: var(--accent-color);
+        color: white;
+    }
+
+    .resources {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        padding: 0 2rem;
+    }
+
+    .resource-card {
+        background-color: var(--card-color);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .resource-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .resource-card h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        color: var(--accent-color);
+    }
+
+    .resource-card p {
+        font-size: 1rem;
+        color: #6b6b6b;
+        margin-bottom: 1rem;
+    }
+
+    .resource-card a {
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 500;
+        display: inline-block;
+        margin-top: 0.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .resource-card a:hover {
+        text-decoration: underline;
+    }
+
+    .tags {
+        margin-top: 0.75rem;
+    }
+
+    .tag {
+        background-color: var(--secondary-color);
+        color: var(--accent-color);
+        padding: 0.3rem 0.6rem;
+        margin: 0.2rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 0;
+    }
+
+    footer {
+        background-color: var(--primary-color);
+        color: var(--text-color);
+        border-top: 1px solid var(--border-color);
+        text-align: center;
+        padding: 1rem;
+        margin-top: 2rem;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-mountain"></i> The Runner Jar</h1>
+        <nav>
+            <ul>
+                <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="/about"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="/submit-resource"><i class="fas fa-plus-circle"></i> Submit Resource</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search resources...">
+            <button id="search-button"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="categories">
+            <button class="category-button"><i class="fas fa-globe"></i> All</button>
+            <button class="category-button"><i class="fas fa-tshirt"></i> Gear</button>
+            <button class="category-button"><i class="fas fa-dumbbell"></i> Training</button>
+            <button class="category-button"><i class="fas fa-map-marked-alt"></i> Navigation</button>
+            <button class="category-button"><i class="fas fa-shield-alt"></i> Safety</button>
+            <button class="category-button"><i class="fas fa-apple-alt"></i> Nutrition</button>
+        </div>
+        <div class="resources" id="resource-container">
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Trail Runner's Resource Hub. All rights reserved.</p>
+    </footer>
+    <script>
+        const resources = [
+            {
+                title: "Trail Running Shoe Finder",
+                description: "Interactive tool to help you find the perfect trail running shoes based on your preferences and running style.",
+                link: "https://therunnerjar.com/tools/shoe-finder",
+                category: "Gear",
+                tags: ["shoes", "gear", "interactive"],
+                icon: "fas fa-shoe-prints"
+            },
+            {
+                title: "Elevation Gain Calculator",
+                description: "Calculate the total elevation gain for your trail run using GPS data or manual input.",
+                link: "https://therunnerjar.com/tools/elevation-calculator",
+                category: "Navigation",
+                tags: ["elevation", "navigation", "calculator"],
+                icon: "fas fa-chart-line"
+            },
+            {
+                title: "Hydration Planner",
+                description: "Plan your hydration strategy for long trail runs based on distance, weather, and personal factors.",
+                link: "https://therunnerjar.com/tools/hydration-planner",
+                category: "Nutrition",
+                tags: ["hydration", "nutrition", "planning"],
+                icon: "fas fa-tint"
+            },
+            {
+                title: "Trail Safety Checklist",
+                description: "Comprehensive checklist to ensure you're prepared for safe trail running adventures.",
+                link: "https://therunnerjar.com/tools/safety-checklist",
+                category: "Safety",
+                tags: ["safety", "checklist", "preparation"],
+                icon: "fas fa-clipboard-check"
+            },
+            {
+                title: "Interval Training Generator",
+                description: "Create custom interval training plans tailored to your trail running goals and fitness level.",
+                link: "https://therunnerjar.com/tools/interval-generator",
+                category: "Training",
+                tags: ["training", "intervals", "workout"],
+                icon: "fas fa-stopwatch"
+            },
+            {
+                title: "Trail Difficulty Rater",
+                description: "Assess and compare trail difficulties using factors like distance, elevation, terrain, and technical features.",
+                link: "https://therunnerjar.com/tools/trail-rater",
+                category: "Navigation",
+                tags: ["trails", "difficulty", "rating"],
+                icon: "fas fa-mountain"
+            }
+        ];
+
+        function createResourceCard(resource) {
+            return `
+                <div class="resource-card">
+                    <h3><i class="${resource.icon}"></i> ${resource.title}</h3>
+                    <p>${resource.description}</p>
+                    <div class="tags">
+                        ${resource.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    <a href="${resource.link}" target="_blank">View tool →</a>
+                </div>
+            `;
+        }
+
+        function displayResources(resources) {
+            const container = document.getElementById('resource-container');
+            container.innerHTML = resources.map(createResourceCard).join('');
+        }
+
+        function filterResources(category) {
+            if (category === 'All') {
+                return resources;
+            }
+            return resources.filter(resource => resource.category === category);
+        }
+
+        function searchResources(query) {
+            query = query.toLowerCase();
+            return resources.filter(resource => 
+                resource.title.toLowerCase().includes(query) ||
+                resource.description.toLowerCase().includes(query) ||
+                resource.tags.some(tag => tag.toLowerCase().includes(query))
+            );
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            displayResources(resources);
+
+            const categoryButtons = document.querySelectorAll('.category-button');
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const category = button.textContent.trim();
+                    displayResources(filterResources(category));
+                });
+            });
+
+            const searchButton = document.getElementById('search-button');
+            const searchInput = document.getElementById('search-input');
+
+            searchButton.addEventListener('click', () => {
+                const query = searchInput.value;
+                displayResources(searchResources(query));
+            });
+
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const query = searchInput.value;
+                    displayResources(searchResources(query));
+                }
+            });
+        });
+    </script>
+</body></html>
