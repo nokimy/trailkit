@@ -1,0 +1,265 @@
+<html><head><base href="https://therunnerjar.com/tools/hydration-planner">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hydration Planner - The Runner Jar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Circular:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary-color: #ffffff;
+        --secondary-color: #f7f6f3;
+        --text-color: #37352f;
+        --background-color: #ffffff;
+        --card-color: #ffffff;
+        --border-color: #e0e0e0;
+        --hover-color: #f1f1ef;
+        --accent-color: #2E8B57;
+    }
+
+    body {
+        font-family: 'Circular', -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+        color: var(--text-color);
+        background-color: var(--background-color);
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background: var(--primary-color);
+        padding: 1rem 2rem;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        margin: 0;
+    }
+
+    nav ul {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin-left: 2rem;
+    }
+
+    nav ul li a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+        color: var(--accent-color);
+    }
+
+    main {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem;
+    }
+
+    h2 {
+        color: var(--accent-color);
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hydration-form {
+        background-color: var(--card-color);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+
+    input[type="number"],
+    input[type="range"],
+    select {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+
+    input[type="range"] {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 8px;
+        border-radius: 5px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        transition: opacity .2s;
+    }
+
+    input[type="range"]:hover {
+        opacity: 1;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--accent-color);
+        cursor: pointer;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--accent-color);
+        cursor: pointer;
+    }
+
+    button {
+        background-color: var(--accent-color);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 500;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #1f6e3d;
+    }
+
+    #result {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background-color: var(--secondary-color);
+        border-radius: 8px;
+        font-weight: 500;
+    }
+
+    footer {
+        background-color: var(--primary-color);
+        color: var(--text-color);
+        border-top: 1px solid var(--border-color);
+        text-align: center;
+        padding: 1rem;
+        margin-top: 2rem;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-mountain"></i> The Runner Jar</h1>
+        <nav>
+            <ul>
+                <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="/about"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="/submit-resource"><i class="fas fa-plus-circle"></i> Submit Resource</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2><i class="fas fa-tint"></i> Hydration Planner</h2>
+        <div class="hydration-form">
+            <div class="form-group">
+                <label for="distance">Run Distance (km):</label>
+                <input type="number" id="distance" min="1" max="200" value="10">
+            </div>
+            <div class="form-group">
+                <label for="temperature">Temperature (°C):</label>
+                <input type="range" id="temperature" min="0" max="40" value="20">
+                <span id="temperatureValue">20°C</span>
+            </div>
+            <div class="form-group">
+                <label for="intensity">Run Intensity:</label>
+                <select id="intensity">
+                    <option value="low">Low (easy pace)</option>
+                    <option value="medium" selected>Medium (moderate pace)</option>
+                    <option value="high">High (race pace)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="weight">Body Weight (kg):</label>
+                <input type="number" id="weight" min="40" max="150" value="70">
+            </div>
+            <button onclick="calculateHydration()">Calculate Hydration Plan</button>
+        </div>
+        <div id="result"></div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Trail Runner's Resource Hub. All rights reserved.</p>
+    </footer>
+    <script>
+        const temperatureSlider = document.getElementById('temperature');
+        const temperatureValue = document.getElementById('temperatureValue');
+
+        temperatureSlider.oninput = function() {
+            temperatureValue.textContent = this.value + '°C';
+        }
+
+        function calculateHydration() {
+            const distance = parseFloat(document.getElementById('distance').value);
+            const temperature = parseInt(document.getElementById('temperature').value);
+            const intensity = document.getElementById('intensity').value;
+            const weight = parseFloat(document.getElementById('weight').value);
+
+            let baseRate = 500; // ml per hour
+            
+            // Adjust for temperature
+            if (temperature > 25) {
+                baseRate += (temperature - 25) * 25; // increase by 25ml for each degree above 25°C
+            }
+
+            // Adjust for intensity
+            if (intensity === 'low') {
+                baseRate *= 0.8;
+            } else if (intensity === 'high') {
+                baseRate *= 1.2;
+            }
+
+            // Adjust for weight
+            baseRate *= (weight / 70); // normalize to 70kg
+
+            const estimatedPace = intensity === 'low' ? 7 : (intensity === 'medium' ? 6 : 5); // min/km
+            const estimatedDuration = (distance * estimatedPace) / 60; // hours
+
+            const totalFluid = baseRate * estimatedDuration;
+
+            const result = document.getElementById('result');
+            result.innerHTML = `
+                <h3>Your Hydration Plan</h3>
+                <p>For your ${distance} km run at ${temperature}°C with ${intensity} intensity:</p>
+                <ul>
+                    <li>Estimated duration: ${estimatedDuration.toFixed(2)} hours</li>
+                    <li>Recommended fluid intake: ${totalFluid.toFixed(0)} ml total</li>
+                    <li>Hydration rate: ${baseRate.toFixed(0)} ml per hour</li>
+                </ul>
+                <p>Consider drinking ${(totalFluid / 4).toFixed(0)} ml every 15 minutes.</p>
+                <p><strong>Note:</strong> This is a general guideline. Adjust based on your personal needs and how you feel during the run.</p>
+            `;
+        }
+    </script>
+</body></html>
