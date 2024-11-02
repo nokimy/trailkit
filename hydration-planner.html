@@ -75,12 +75,12 @@
         margin-bottom: 1rem;
     }
 
-   .content-wrapper {
+    .content-wrapper {
         display: grid;
         grid-template-columns: 1fr;  /* Change to single column */
         gap: 2rem;
     }
-   .unit-toggle {
+    .unit-toggle {
         background: var(--card-color);
         padding: 0.75rem;
         margin-bottom: 1rem;
@@ -93,13 +93,13 @@
         border-radius: 8px;
     }
 
-   .form-grid {
+    .form-grid {
         display: grid;
         grid-template-columns: 1fr;
         gap: 1rem;
     }
 
-   .form-group {
+    .form-group {
         margin-bottom: 1rem;
         padding: 1rem;
         background: var(--secondary-color);
@@ -110,7 +110,7 @@
         flex-direction: column;
     }
 
-   .form-group:hover {
+    .form-group:hover {
         transform: translateY(-2px);
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
@@ -138,22 +138,22 @@
         box-shadow: 0 0 0 2px rgba(46,139,87,0.1);
     }
 
-   .duration-fields {
+    .duration-fields {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
     }
 
-   .duration-field {
+    .duration-field {
         position: relative;
     }
 
-  .duration-field input {
+    .duration-field input {
         width: 100%;
         padding-right: 3.5rem;
     }
 
-  .duration-field::after {
+    .duration-field::after {
         content: attr(data-unit);
         position: absolute;
         right: 1rem;
@@ -161,21 +161,7 @@
         transform: translateY(-50%);
         color: #666;
         pointer-events: none;
-        padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-    }
-
-   .unit-label {
-        position: absolute;
-        right: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #666;
-        pointer-events: none;
-        padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-        border: 1px solid #ddd;
-        border-radius: 4px;
+        padding: 0.5rem 0;
     }
 
     button {
@@ -183,9 +169,11 @@
         color: white;
         border: none;
         padding: 1rem;
-        font-size: 1rem;
-        font-weight: 500;
+        font-size: 1.1rem;
         letter-spacing: 0.5px;
+        font-weight: 500;
+        border-radius: 4px;
+        cursor: pointer;
         transition: all 0.3s ease;
         width: 100%;
         margin-top: 1rem;
@@ -205,7 +193,7 @@
         grid-column: 1 / -1;
         display: none;
         opacity: 0;
-        transform: translateY(0);
+        transform: translateY(20px);
         transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
@@ -220,7 +208,7 @@
         margin-top: 0;
     }
 
-   footer {
+    footer {
         background-color: var(--primary-color);
         color: var(--text-color);
         border-top: 1px solid var(--border-color);
@@ -229,25 +217,58 @@
         margin-top: 2rem;
     }
 
-   .help-text,.sarcastic-text {
+    .unit-label {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #666;
+        pointer-events: none;
+        padding: 0.5rem 0;
+    }
+
+    input[type="number"], select, input[type="text"] {
+        width: 100%;
+        padding: 0.5rem;
+        padding-right: 3.5rem; /* Increased from 2.5rem to give more space for unit labels */
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+        padding: 1rem;
+        background: var(--secondary-color);
+        border-radius: 8px;
+        transition: transform 0.2s ease;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .help-text, .sarcastic-text {
         margin-top: 0.5rem;
         clear: both;
         position: relative;
+        padding-top: 0.5rem;
     }
 
     @media (max-width: 1024px) {
-       .content-wrapper {
+        .content-wrapper {
             grid-template-columns: 1fr;
         }
     }
 
     @media (max-width: 768px) {
-       .content-wrapper {
+        .content-wrapper {
             grid-template-columns: 1fr;
         }
     }
 
-   .sarcastic-text {
+    .sarcastic-text {
         font-size: 0.9rem;
         color: #666;
         font-style: italic;
@@ -269,7 +290,7 @@
         margin-bottom: 0.5rem;
     }
 
-   .adventure-message {
+    .adventure-message {
         font-style: italic;
         font-weight: bold;
         color: var(--accent-color);
@@ -286,17 +307,200 @@
             <ul>
                 <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="/about"><i class="fas fa-info-circle"></i> About</a></li>
-                <li><a href="/submit-resource"><i class="fas fa-info-circle"></i> Submit Resource</a></li>
+                <li><a href="/submit-resource"><i class="fas fa-plus-circle"></i> Submit Resource</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <h2><i class="fas fa-tint"></i> Hydration Planner</h2>
-        <p>Plan your hydration strategy for trail runs. Enter your run details and personal factors to receive a customized hydration recommendation.</p>
+        <p>Plan your hydration strategy for your next trail run with this interactive tool. Enter your run details and personal factors to receive a customized hydration recommendation.</p>
 
         <div class="content-wrapper">
             <form id="hydrationForm">
                 <div class="form-grid">
                     <div class="form-group">
-                        <label
+                        <label for="distance"><i class="fas fa-route"></i> Run Distance:</label>
+                        <input type="number" id="distance" required min="0" step="0.1">
+                        <span class="unit-label">km</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="elevation"><i class="fas fa-mountain"></i> Elevation Gain:</label>
+                        <input type="number" id="elevation" required min="0">
+                        <span class="unit-label">m</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="duration"><i class="fas fa-clock"></i> Estimated Duration:</label>
+                        <div class="duration-fields">
+                            <div class="duration-field" data-unit="hrs">
+                                <input type="number" id="duration-hours" min="0" placeholder="Hours">
+                            </div>
+                            <div class="duration-field" data-unit="min">
+                                <input type="number" id="duration-minutes" min="0" max="59" placeholder="Minutes">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weight"><i class="fas fa-weight"></i> Body Weight:</label>
+                        <input type="number" id="weight" required min="0">
+                        <span class="unit-label">kg</span>
+                        <p class="sarcastic-text">Don't worry, we won't tell anyone your weight. It's not like we know your name anyway!</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="temperature"><i class="fas fa-thermometer-half"></i> Temperature:</label>
+                        <input type="number" id="temperature" required min="-50" max="50">
+                        <span class="unit-label">°C</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="humidity"><i class="fas fa-tint"></i> Relative Humidity:</label>
+                        <input type="number" id="humidity" required min="0" max="100">
+                        <span class="unit-label">%</span>
+                        <p class="help-text">Hey runner! Humidity's like nature's sweat-o-meter. It affects how fast your sweat evaporates. Higher humidity? More sweat sticking around. Check your local weather app or grab a hygrometer if you're feeling fancy!</p>
+                    </div>
+
+                    <div class="button-container">
+                        <button type="submit">Calculate Hydration Needs</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="unit-toggle">
+                <label>
+                    <input type="radio" name="unit" value="metric" checked> Metric
+                </label>
+                <label>
+                    <input type="radio" name="unit" value="imperial"> Imperial
+                </label>
+            </div>
+
+            <div id="result" class="hidden">
+                <div class="result-content">
+                    <h3><i class="fas fa-tint"></i> Your Hydration Plan</h3>
+                    <div id="hydrationRecommendation"></div>
+                    <div class="hydration-illustration">
+                        <i class="fas fa-running"></i>
+                        <i class="fas fa-tint"></i>
+                        <i class="fas fa-tint"></i>
+                        <i class="fas fa-tint"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 The Runner Jar. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const unitToggle = document.querySelectorAll('input[name="unit"]');
+        const unitLabels = document.querySelectorAll('.unit-label');
+        const distanceInput = document.getElementById('distance');
+        const elevationInput = document.getElementById('elevation');
+        const weightInput = document.getElementById('weight');
+        const durationInput = document.getElementById('duration');
+        const temperatureInput = document.getElementById('temperature');
+
+        function updateUnits(toImperial) {
+            if (toImperial) {
+                unitLabels[0].textContent = 'miles';
+                unitLabels[1].textContent = 'ft';
+                unitLabels[2].textContent = 'lbs';
+                unitLabels[3].textContent = '°F';
+                distanceInput.value = (parseFloat(distanceInput.value) * 0.621371).toFixed(2);
+                elevationInput.value = (parseFloat(elevationInput.value) * 3.28084).toFixed(0);
+                weightInput.value = (parseFloat(weightInput.value) * 2.20462).toFixed(1);
+                temperatureInput.value = (parseFloat(temperatureInput.value) * 9/5 + 32).toFixed(1);
+            } else {
+                unitLabels[0].textContent = 'km';
+                unitLabels[1].textContent = 'm';
+                unitLabels[2].textContent = 'kg';
+                unitLabels[3].textContent = '°C';
+                distanceInput.value = (parseFloat(distanceInput.value) / 0.621371).toFixed(2);
+                elevationInput.value = (parseFloat(elevationInput.value) / 3.28084).toFixed(0);
+                weightInput.value = (parseFloat(weightInput.value) / 2.20462).toFixed(1);
+                temperatureInput.value = ((parseFloat(temperatureInput.value) - 32) * 5/9).toFixed(1);
+            }
+        }
+
+        unitToggle.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                updateUnits(e.target.value === 'imperial');
+            });
+        });
+
+        document.querySelectorAll('.duration-field').forEach(field => {
+            const input = field.querySelector('input');
+            if (input.id === 'duration-hours') {
+                field.setAttribute('data-unit', 'hrs');
+            } else if (input.id === 'duration-minutes') {
+                field.setAttribute('data-unit', 'min');
+            }
+        });
+
+        document.getElementById('hydrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+    
+            // Get hours and minutes and convert to decimal hours
+            const hours = parseFloat(document.getElementById('duration-hours').value || 0);
+            const minutes = parseFloat(document.getElementById('duration-minutes').value || 0);
+            const duration = hours + (minutes / 60);
+
+            const isImperial = document.querySelector('input[name="unit"]:checked').value === 'imperial';
+            const distance = parseFloat(document.getElementById('distance').value);
+            const temperature = parseFloat(document.getElementById('temperature').value);
+            const humidity = parseFloat(document.getElementById('humidity').value);
+            const elevation = parseFloat(document.getElementById('elevation').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+
+            const distanceKm = isImperial ? distance * 1.60934 : distance;
+            const tempC = isImperial ? (temperature - 32) * 5/9 : temperature;
+            const elevationM = isImperial ? elevation * 0.3048 : elevation;
+            const weightKg = isImperial ? weight * 0.453592 : weight;
+
+            let baseRate = 500;
+
+            if (tempC > 20) baseRate += (tempC - 20) * 15;
+            if (humidity > 50) baseRate += (humidity - 50) * 3;
+            baseRate *= (1 + (elevationM / 1000) * 0.05);
+            baseRate *= (weightKg / 70);
+
+            const totalHydration = baseRate * duration;
+            const hourlyRate = baseRate;
+
+            // Calculate electrolyte needs
+            const sodiumPerHour = Math.round((hourlyRate / 1000) * 500); // 500mg sodium per liter
+            const potassiumPerHour = Math.round((hourlyRate / 1000) * 200); // 200mg potassium per liter
+
+            const result = document.getElementById('result');
+            const recommendation = document.getElementById('hydrationRecommendation');
+            
+            const totalLiters = totalHydration / 1000;
+            const totalOz = totalLiters * 33.814;
+            const hourlyOz = hourlyRate / 29.5735;
+
+            recommendation.innerHTML = `
+                <h4>Fluid Intake:</h4>
+                <ul>
+                    <li>Total fluid intake: ${Math.round(totalHydration)} ml (${totalLiters.toFixed(2)} liters)${isImperial ? ` or ${Math.round(totalOz)} fl oz` : ''}</li>
+                    <li>Hourly fluid intake: ${Math.round(hourlyRate)} ml/hour${isImperial ? ` or ${hourlyOz.toFixed(1)} fl oz/hour` : ''}</li>
+                </ul>
+                <h4>Electrolyte Recommendations:</h4>
+                <ul>
+                    <li>Sodium: ${sodiumPerHour} mg per hour</li>
+                    <li>Potassium: ${potassiumPerHour} mg per hour</li>
+                </ul>
+                <p>Remember to start your run well-hydrated and adjust your intake based on how you feel during the run.</p>
+                <p class="adventure-message">Get ready for an epic adventure! You've got your hydration plan, now go conquer those trails like the amazing runner you are! 🏃‍♂️💨</p>
+            `;
+
+            result.classList.remove('hidden');
+            result.classList.add('show');
+        });
+    </script>
+</body></html>
