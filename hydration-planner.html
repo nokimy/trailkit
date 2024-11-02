@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html><head><base href="https://therunnerjar.com/tools/hydration-planner">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hydration Planner - The Runner Jar</title>
@@ -77,47 +75,42 @@
         margin-bottom: 1rem;
     }
 
-    .content-wrapper {
+   .content-wrapper {
         display: grid;
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 1fr;  /* Change to single column */
         gap: 2rem;
     }
-
-    .unit-toggle {
+   .unit-toggle {
         background: var(--card-color);
-        padding: 0.5rem;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        border: 1px solid var(--border-color);
+        padding: 0.75rem;
         margin-bottom: 1rem;
         width: 100%;
-    }
-
-    .unit-toggle label {
-        cursor: pointer;
+        box-sizing: border-box;
         display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem;
+        justify-content: center;
+        gap: 2rem;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
     }
 
-    .form-grid {
+   .form-grid {
         display: grid;
         grid-template-columns: 1fr;
         gap: 1rem;
     }
 
-    .form-group {
+   .form-group {
         margin-bottom: 1rem;
         padding: 1rem;
         background: var(--secondary-color);
         border-radius: 8px;
         transition: transform 0.2s ease;
+        position: relative;
+        display: flex;
+        flex-direction: column;
     }
 
-    .form-group:hover {
+   .form-group:hover {
         transform: translateY(-2px);
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
@@ -131,10 +124,12 @@
     input[type="number"], select, input[type="text"] {
         width: 100%;
         padding: 0.5rem;
+        padding-right: 3.5rem;  /* Consistent right padding for unit labels */
         border: 1px solid var(--border-color);
         border-radius: 4px;
         font-size: 1rem;
         transition: all 0.3s ease;
+        box-sizing: border-box;
     }
 
     input[type="number"]:focus, select:focus, input[type="text"]:focus {
@@ -143,30 +138,44 @@
         box-shadow: 0 0 0 2px rgba(46,139,87,0.1);
     }
 
-    .weather-widget {
-        grid-column: 2;
-        grid-row: 3 / span 3;
-        margin-top: 1rem;
-        padding: 0.5rem;
-        background: var(--card-color);
-        border-radius: 8px;
-        text-align: center;
+   .duration-fields {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
     }
 
-    @media (max-width: 768px) {
-        .content-wrapper {
-            grid-template-columns: 1fr;
-        }
-
-        .weather-widget {
-            grid-column: 1;
-            margin-top: 2rem;
-        }
+   .duration-field {
+        position: relative;
     }
 
-    .button-container {
-        display: flex;
-        justify-content: center;
+  .duration-field input {
+        width: 100%;
+        padding-right: 3.5rem;
+    }
+
+  .duration-field::after {
+        content: attr(data-unit);
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #666;
+        pointer-events: none;
+        padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+   .unit-label {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #666;
+        pointer-events: none;
+        padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
     }
 
     button {
@@ -174,11 +183,9 @@
         color: white;
         border: none;
         padding: 1rem;
-        font-size: 1.1rem;
-        letter-spacing: 0.5px;
+        font-size: 1rem;
         font-weight: 500;
-        border-radius: 4px;
-        cursor: pointer;
+        letter-spacing: 0.5px;
         transition: all 0.3s ease;
         width: 100%;
         margin-top: 1rem;
@@ -187,6 +194,88 @@
     button:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(46,139,87,0.2);
+    }
+
+    #result {
+        background: var(--card-color);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        margin-top: 2rem;
+        padding: 1.5rem;
+        grid-column: 1 / -1;
+        display: none;
+        opacity: 0;
+        transform: translateY(0);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    #result.show {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    #result h3 {
+        color: var(--accent-color);
+        margin-top: 0;
+    }
+
+   footer {
+        background-color: var(--primary-color);
+        color: var(--text-color);
+        border-top: 1px solid var(--border-color);
+        text-align: center;
+        padding: 1rem;
+        margin-top: 2rem;
+    }
+
+   .help-text,.sarcastic-text {
+        margin-top: 0.5rem;
+        clear: both;
+        position: relative;
+    }
+
+    @media (max-width: 1024px) {
+       .content-wrapper {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+       .content-wrapper {
+            grid-template-columns: 1fr;
+        }
+    }
+
+   .sarcastic-text {
+        font-size: 0.9rem;
+        color: #666;
+        font-style: italic;
+        margin-top: 0.25rem;
+    }
+
+    #result ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    #result ul li {
+        margin-bottom: 0.5rem;
+    }
+
+    #result h4 {
+        color: var(--accent-color);
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+   .adventure-message {
+        font-style: italic;
+        font-weight: bold;
+        color: var(--accent-color);
+        margin-top: 1rem;
+        font-size: 1.1em;
+        text-align: center;
     }
 </style>
 </head>
@@ -197,54 +286,17 @@
             <ul>
                 <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="/about"><i class="fas fa-info-circle"></i> About</a></li>
-                <li><a href="/submit-resource"><i class="fas fa-plus-circle"></i> Submit Resource</a></li>
+                <li><a href="/submit-resource"><i class="fas fa-info-circle"></i> Submit Resource</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <h2><i class="fas fa-tint"></i> Hydration Planner</h2>
-        <p>Plan your hydration strategy for your next trail run with this interactive tool. Enter your run details and personal factors to receive a customized hydration recommendation.</p>
+        <p>Plan your hydration strategy for trail runs. Enter your run details and personal factors to receive a customized hydration recommendation.</p>
 
         <div class="content-wrapper">
-            <!-- Unit Toggle -->
-            <div class="unit-toggle">
-                <label>
-                    <input type="radio" name="unit" value="metric" checked> Metric
-                </label>
-                <label>
-                    <input type="radio" name="unit" value="imperial"> Imperial
-                </label>
-            </div>
-
-            <!-- Form -->
             <form id="hydrationForm">
                 <div class="form-grid">
-                    <!-- Form fields go here (distance, elevation, duration, weight, temperature, etc.) -->
-                    <!-- Existing form groups, labels, inputs, etc. -->
-                </div>
-            </form>
-
-            <!-- Weather Widget -->
-            <div class="weather-widget">
-                <h3>Local Weather</h3>
-                <iframe src="https://www.meteoblue.com/fr/meteo/widget/daily?geoloc=detect&days=4&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&precipunit=MILLIMETER&coloured=coloured&pictoicon=1&maxtemperature=1&mintemperature=1&windspeed=0&windgust=0&winddirection=0&uv=0&humidity=1&precipitation=1&precipitationprobability=1&spot=0&pressure=0&layout=light" 
-                        frameborder="0" 
-                        scrolling="NO" 
-                        allowtransparency="true" 
-                        sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" 
-                        style="width: 100%; height: 420px"></iframe>
-                <div>
-                    <a href="https://www.meteoblue.com/fr/meteo/semaine/index?utm_source=daily_widget&utm_medium=linkus&utm_content=daily&utm_campaign=Weather%2BWidget" 
-                       target="_blank" 
-                       rel="noopener">meteoblue</a>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; 2023 The Runner Jar. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+                    <div class="form-group">
+                        <label
