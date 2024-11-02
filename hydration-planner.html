@@ -29,6 +29,7 @@
         max-width: 800px;
         margin: 2rem auto;
         padding: 0 1rem;
+        position: relative;
     }
 
     h2 {
@@ -360,10 +361,78 @@
         font-size: 1.1em;
         text-align: center;
     }
+
+    .language-selector {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+    }
+
+    .language-button {
+        background: none;
+        border: none;
+        color: var(--accent-color);
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+    }
+
+    .language-button:hover {
+        background-color: var(--secondary-color);
+        transform: none;
+        box-shadow: none;
+    }
+
+    .language-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        display: none;
+        z-index: 1000;
+        min-width: 120px;
+    }
+
+    .language-dropdown.show {
+        display: block;
+    }
+
+    .language-dropdown a {
+        display: block;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        color: var(--text-color);
+        transition: background-color 0.3s ease;
+    }
+
+    .language-dropdown a:hover {
+        background-color: var(--secondary-color);
+    }
 </style>
 </head>
 <body>
     <main>
+        <div class="language-selector">
+            <button class="language-button" id="languageButton">
+                <i class="fas fa-globe"></i>
+            </button>
+            <div class="language-dropdown" id="languageDropdown">
+                <a href="#" data-lang="en">English</a>
+                <a href="#" data-lang="fr">Français</a>
+                <a href="#" data-lang="es">Español</a>
+                <a href="#" data-lang="de">Deutsch</a>
+            </div>
+        </div>
         <h2><i class="fas fa-tint"></i> Hydration Planner</h2>
         <p>Plan your hydration strategy for your next trail run with this interactive tool. Enter your run details and personal factors to receive a customized hydration recommendation.</p>
 
@@ -455,7 +524,7 @@
                             <i class="fas fa-copy"></i> Copy to clipboard
                         </button>
                         <button class="copy-button" onclick="downloadXLS()" title="Download as XLS">
-                            <i class="fas fa-file-excel"></i> Download XLS
+                            <i class="fas fa-file-excel"></i> Download .csv
                         </button>
                     </div>
                 </div>
@@ -675,5 +744,23 @@
             link.click();
             document.body.removeChild(link);
         }
+
+        const languageButton = document.getElementById('languageButton');
+        const languageDropdown = document.getElementById('languageDropdown');
+
+        languageButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            languageDropdown.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!languageDropdown.contains(e.target)) {
+                languageDropdown.classList.remove('show');
+            }
+        });
+
+        languageDropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
     </script>
 </body></html>
