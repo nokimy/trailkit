@@ -1,338 +1,163 @@
-<html><head><base href="https://therunnerjar.com/">
+"keyword"><html>"keyword"><head><base href="https://therunnerjar.com/tools/hydration-planner">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trail Kit - Your Repository of Trail Running Tools</title>
+"keyword"><title>Hydration Planner - The Runner Jar</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Circular:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-    :root {
-        --primary-color: #ffffff;
-        --secondary-color: #f7f6f3;
-        --text-color: #37352f;
-        --background-color: #ffffff;
-        --card-color: #ffffff;
-        --border-color: #e0e0e0;
-        --hover-color: #f1f1ef;
-        --accent-color: #2E8B57;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 
-    body {
-        font-family: 'Circular', -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
-        color: var(--text-color);
-        background-color: var(--background-color);
-        line-height: 1.6;
-    }
-
-    header {
-        background: var(--primary-color);
-        padding: 1rem 2rem;
-        border-bottom: 1px solid var(--border-color);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    header h1 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--accent-color);
-        margin: 0;
-    }
-
-    nav ul {
-        display: flex;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    nav ul li {
-        margin-left: 2rem;
-    }
-
-    nav ul li a {
-        color: var(--text-color);
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.3s ease;
-    }
-
-    nav ul li a:hover {
-        color: var(--accent-color);
-    }
-
-    .search-container {
-        margin: 2rem auto;
-        max-width: 600px;
-        position: relative;
-    }
-
-    #search-input {
-        width: 100%;
-        padding: 1rem 1.5rem;
-        font-size: 1rem;
-        border: 1px solid var(--border-color);
-        border-radius: 30px;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    #search-input:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px rgba(46, 139, 87, 0.2);
-    }
-
-    #search-button {
-        position: absolute;
-        right: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
-        background: none;
-        border: none;
-        color: var(--accent-color);
-        font-size: 1.2rem;
-        cursor: pointer;
-    }
-
-    .categories {
-        margin-bottom: 2rem;
-        text-align: center;
-    }
-
-    .category-button {
-        background-color: var(--secondary-color);
-        color: var(--text-color);
-        border: 1px solid var(--border-color);
-        padding: 0.5rem 1rem;
-        margin: 0.5rem;
-        border-radius: 20px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-    }
-
-    .category-button:hover {
-        background-color: var(--accent-color);
-        color: white;
-    }
-
-    .resources {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
-        padding: 0 2rem;
-    }
-
-    .resource-card {
-        background-color: var(--card-color);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        padding: 1.5rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .resource-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    .resource-card h3 {
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin-bottom: 0.75rem;
-        color: var(--accent-color);
-    }
-
-    .resource-card p {
-        font-size: 1rem;
-        color: #6b6b6b;
-        margin-bottom: 1rem;
-    }
-
-    .resource-card a {
-        color: var(--accent-color);
-        text-decoration: none;
-        font-weight: 500;
-        display: inline-block;
-        margin-top: 0.5rem;
-        transition: color 0.3s ease;
-    }
-
-    .resource-card a:hover {
-        text-decoration: underline;
-    }
-
-    .tags {
-        margin-top: 0.75rem;
-    }
-
-    .tag {
-        background-color: var(--secondary-color);
-        color: var(--accent-color);
-        padding: 0.3rem 0.6rem;
-        margin: 0.2rem;
-        border-radius: 15px;
-        font-size: 0.8rem;
-        font-weight: 500;
-    }
-
-    main {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem 0;
-    }
-
-    footer {
-        background-color: var(--primary-color);
-        color: var(--text-color);
-        border-top: 1px solid var(--border-color);
-        text-align: center;
-        padding: 1rem;
-        margin-top: 2rem;
-    }
-</style>
-</head>
-<body>
-    <header>
-        <h1><i class="fas fa-mountain"></i> Trail Kit</h1>
-        <nav>
-            <ul>
-                <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="/about"><i class="fas fa-info-circle"></i> About</a></li>
-                <li><a href="/submit-resource"><i class="fas fa-plus-circle"></i> Submit Resource</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <div class="search-container">
-            <input type="text" id="search-input" placeholder="Search resources...">
-            <button id="search-button"><i class="fas fa-search"></i></button>
+<link rel="stylesheet" href="styles.css"><script src="script.js"></script></head>
+"keyword"><body>
+    "keyword"><main>
+        <div class="toggle-controls">
+            <div class="unit-toggle">
+                <label class="toggle-button">
+                    <input type="radio" name="unit" value="metric" checked="">
+                    "keyword"><span>Metric</span>
+                </label>
+                <label class="toggle-button">
+                    <input type="radio" name="unit" value="imperial">
+                    "keyword"><span>Imperial</span>
+                </label>
+            </div>
         </div>
-        <div class="categories">
-            <button class="category-button"><i class="fas fa-globe"></i> All</button>
-            <button class="category-button"><i class="fas fa-tshirt"></i> Gear</button>
-            <button class="category-button"><i class="fas fa-dumbbell"></i> Training</button>
-            <button class="category-button"><i class="fas fa-map-marked-alt"></i> Navigation</button>
-            <button class="category-button"><i class="fas fa-shield-alt"></i> Safety</button>
-            <button class="category-button"><i class="fas fa-apple-alt"></i> Nutrition</button>
-        </div>
-        <div class="resources" id="resource-container">
+        "keyword"><h2><i class="fas fa-tint"></i> Hydration Planner</h2>
+        "keyword"><p>Plan your hydration strategy for your next trail run with this interactive tool. Enter your run details and personal factors to receive a customized hydration recommendation.</p>
+
+        <div class="content-wrapper">
+            <form id="hydrationForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="distance"><i class="fas fa-route"></i> Run Distance</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="distance" required="" min="0" step="0.1" value="10">
+                            <span class="unit-label">km</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="elevation"><i class="fas fa-mountain"></i> Elevation Gain</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="elevation" required="" min="0" value="200">
+                            <span class="unit-label">m</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="duration"><i class="fas fa-clock"></i> Estimated Duration</label>
+                        <div class="duration-fields">
+                        <div class="input-wrapper">
+                            <div class="duration-field" data-unit="hrs">
+                                <input type="number" id="duration-hours" min="0" placeholder="Hours" value="1">
+                            </div>
+                        </div>
+
+                        <div class="input-wrapper">
+                            <div class="duration-field" data-unit="min">
+                                <input type="number" id="duration-minutes" min="0" max="59" placeholder="Minutes" value="30">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weight"><i class="fas fa-weight"></i> Body Weight</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="weight" required="" min="0" value="70">
+                            <span class="unit-label">kg</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="temperature"><i class="fas fa-thermometer-half"></i> Temperature</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="temperature" required="" min="-50" max="50" value="20">
+                            <span class="unit-label">°C</span>
+                        </div>
+                        <p class="help-text">Need current temperature data? <a href="https://weather.com/fr-FR/temps/10jours/l/9099c1b5627805345616709675ec5798c45bbeea4662bf7860e0d65f5b8e6ba9" target="_blank">Check Weather.com <i class="fas fa-external-link-alt"></i></a></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="humidity"><i class="fas fa-tint"></i> Relative Humidity</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="humidity" min="0" max="100" value="50">
+                            <span class="unit-label">%</span>
+                        </div>
+                        <p class="help-text">Need current humidity data? <a href="https://weather.com/fr-FR/temps/10jours/l/9099c1b5627805345616709675ec5798c45bbeea4662bf7860e0d65f5b8e6ba9" target="_blank">Check Weather.com <i class="fas fa-external-link-alt"></i></a></p>
+                    </div>
+
+                    <div class="button-container">
+                        <button type="submit">Calculate Hydration Needs</button>
+                    </div>
+                </div>
+            </form>
+
+            <div id="result" class="hidden">
+                <div class="result-content">
+                    "keyword"><h3><i class="fas fa-tint"></i> Your Hydration Plan</h3>
+                </div>
+                <table class="electrolyte-table">
+                    "keyword"><tbody><tr class="section-header">
+                        <th colspan="3">Water Intake</th>
+                    </tr>
+                    "keyword"><tr>
+                        "keyword"><th>Type</th>
+                        "keyword"><th>Per Hour</th>
+                        "keyword"><th>Total</th>
+                    </tr>
+                    "keyword"><tr>
+                        "keyword"><td><i class="fas fa-glass-water"></i> Water</td>
+                        <td id="hourlyFluidIntake"></td>
+                        <td id="totalFluidIntake"></td>
+                    </tr>
+                    <tr class="section-header">
+                        <th colspan="3">Electrolyte Intake</th>
+                    </tr>
+                    "keyword"><tr>
+                        "keyword"><th>Type</th>
+                        "keyword"><th>Per Hour</th>
+                        "keyword"><th>Total</th>
+                    </tr>
+                    "keyword"><tr>
+                        "keyword"><td><i class="fas fa-cube"></i> Sodium</td>
+                        <td id="sodiumPerHour"></td>
+                        <td id="sodiumTotal"></td>
+                    </tr>
+                    "keyword"><tr>
+                        "keyword"><td><i class="fas fa-leaf"></i> Potassium</td>
+                        <td id="potassiumPerHour"></td>
+                        <td id="potassiumTotal"></td>
+                    </tr>
+                    "keyword"><tr>
+                        "keyword"><td><i class="fas fa-vial"></i> Magnesium</td>
+                        <td id="magnesiumPerHour"></td>
+                        <td id="magnesiumTotal"></td>
+                    </tr>
+                    "keyword"><tr>
+                        "keyword"><td><i class="fas fa-bone"></i> Calcium</td>
+                        <td id="calciumPerHour"></td>
+                        <td id="calciumTotal"></td>
+                    </tr>
+                </tbody></table>
+                <div class="action-buttons">
+                    <button class="copy-button" onclick="copyResults()" title="Copy results to clipboard">
+                        <i class="fas fa-copy"></i> Copy to clipboard
+                    </button>
+                    <button class="copy-button" onclick="downloadXLS()" title="Download as XLS">
+                        <i class="fas fa-file-excel"></i> Download .csv
+                    </button>
+                </div>
+                "keyword"><p>Remember to start your run well-hydrated and adjust your intake based on how you feel during the run.</p>
+            </div>
         </div>
     </main>
-    <footer>
-        <p>&copy; 2023 Trail Runner's Resource Hub. All rights reserved.</p>
+
+    "keyword"><footer>
+        "keyword"><p>© 2024 Noemie Prin. All rights reserved.</p>
+        <div class="language-options">
+            <button class="language-button active" data-lang="en">EN</button>
+            <button class="language-button" data-lang="fr">FR</button>
+        </div>
     </footer>
-    <script>
-        const resources = [
-            {
-                title: "Trail Running Shoe Finder",
-                description: "Interactive tool to help you find the perfect trail running shoes based on your preferences and running style.",
-                link: "https://therunnerjar.com/tools/shoe-finder",
-                category: "Gear",
-                tags: ["shoes", "gear", "interactive"],
-                icon: "fas fa-shoe-prints"
-            },
-            {
-                title: "Elevation Gain Calculator",
-                description: "Calculate the total elevation gain for your trail run using GPS data or manual input.",
-                link: "https://therunnerjar.com/tools/elevation-calculator",
-                category: "Navigation",
-                tags: ["elevation", "navigation", "calculator"],
-                icon: "fas fa-chart-line"
-            },
-            {
-                title: "Hydration Planner",
-                description: "Plan your hydration strategy for long trail runs based on distance, weather, and personal factors.",
-                link: "https://nokimy.github.io/trailkit/hydration-planner",
-                category: "Nutrition",
-                tags: ["hydration", "nutrition", "planning"],
-                icon: "fas fa-tint"
-            },
-            {
-                title: "Trail Safety Checklist",
-                description: "Comprehensive checklist to ensure you're prepared for safe trail running adventures.",
-                link: "https://nokimy.github.io/trailkit/",
-                category: "Safety",
-                tags: ["safety", "checklist", "preparation"],
-                icon: "fas fa-clipboard-check"
-            },
-            {
-                title: "Interval Training Generator",
-                description: "Create custom interval training plans tailored to your trail running goals and fitness level.",
-                link: "https://therunnerjar.com/tools/interval-generator",
-                category: "Training",
-                tags: ["training", "intervals", "workout"],
-                icon: "fas fa-stopwatch"
-            },
-            {
-                title: "Trail Difficulty Rater",
-                description: "Assess and compare trail difficulties using factors like distance, elevation, terrain, and technical features.",
-                link: "https://therunnerjar.com/tools/trail-rater",
-                category: "Navigation",
-                tags: ["trails", "difficulty", "rating"],
-                icon: "fas fa-mountain"
-            }
-        ];
 
-        function createResourceCard(resource) {
-            return `
-                <div class="resource-card">
-                    <h3><i class="${resource.icon}"></i> ${resource.title}</h3>
-                    <p>${resource.description}</p>
-                    <div class="tags">
-                        ${resource.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                    </div>
-                    <a href="${resource.link}" target="_blank">View tool →</a>
-                </div>
-            `;
-        }
-
-        function displayResources(resources) {
-            const container = document.getElementById('resource-container');
-            container.innerHTML = resources.map(createResourceCard).join('');
-        }
-
-        function filterResources(category) {
-            if (category === 'All') {
-                return resources;
-            }
-            return resources.filter(resource => resource.category === category);
-        }
-
-        function searchResources(query) {
-            query = query.toLowerCase();
-            return resources.filter(resource => 
-                resource.title.toLowerCase().includes(query) ||
-                resource.description.toLowerCase().includes(query) ||
-                resource.tags.some(tag => tag.toLowerCase().includes(query))
-            );
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            displayResources(resources);
-
-            const categoryButtons = document.querySelectorAll('.category-button');
-            categoryButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const category = button.textContent.trim();
-                    displayResources(filterResources(category));
-                });
-            });
-
-            const searchButton = document.getElementById('search-button');
-            const searchInput = document.getElementById('search-input');
-
-            searchButton.addEventListener('click', () => {
-                const query = searchInput.value;
-                displayResources(searchResources(query));
-            });
-
-            searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    const query = searchInput.value;
-                    displayResources(searchResources(query));
-                }
-            });
-        });
-    </script>
+    
 </body></html>
