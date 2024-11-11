@@ -3,62 +3,137 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hydration Planner - The Runner Jar</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
     :root {
-        --primary-color: #ffffff;
-        --secondary-color: #f7f6f3;
-        --text-color: #37352f;
-        --background-color: #ffffff;
-        --card-color: #ffffff;
-        --border-color: #e0e0e0;
-        --hover-color: #f1f1ef;
-        --accent-color: #2E8B57;
+        --primary-color: #37352F;
+        --secondary-color: #F7F6F3;
+        --text-color: #37352F;
+        --background-color: #FFFFFF;
+        --card-color: #F7F6F3;
+        --border-color: #E9E9E8;
+        --hover-color: #EBEAEA;
+        --accent-color: #6F4FF2;
+        --dark-accent-color: #5B3ED6;
     }
 
     body {
-        font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+        font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji';
         color: var(--text-color);
         background-color: var(--background-color);
-        line-height: 1.6;
+        line-height: 1.5;
         margin: 0;
         padding: 0;
     }
 
     main {
         max-width: 800px;
-        margin: 2rem auto;
-        padding: 0 1rem;
+        margin: 3rem auto;  
+        padding: 2rem 1rem 0;  
         position: relative;
     }
 
     h2 {
-        color: var(--accent-color);
-        font-size: 2rem;
-        margin-bottom: 1rem;
+        color: var(--text-color);
+        border-bottom: 1px solid var(--border-color);
+        font-weight: 600;
+        margin-top: 2rem;  
+        margin-bottom: 1.5rem;  
+        padding-bottom: 1rem;
+        font-size: 1.8rem;  
+    }
+
+    main > p {
+        margin-bottom: 3rem;  
+        font-size: 1.1rem;   
+        color: #666;         
+        line-height: 1.6;    
     }
 
     .content-wrapper {
         display: grid;
         grid-template-columns: 1fr;  
-        gap: 2rem;
+        gap: 1rem; 
     }
-    .unit-toggle {
-        background: var(--secondary-color);
-        padding: 1rem;
-        margin-bottom: 1rem;
-        grid-column: 1 / -1;  
-        box-sizing: border-box;
+    
+    .toggle-controls {
+        position: absolute;
+        top: 1.5rem;         
+        right: 1rem;
         display: flex;
-        justify-content: center;
-        gap: 2rem;
-        border-radius: 8px;
-        transition: transform 0.2s ease;
+        gap: 0.5rem;
+        align-items: center;
+        z-index: 1;
     }
 
-    .unit-toggle:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    .unit-toggle {
+        display: flex;
+        gap: 0.5rem;
+        background: transparent;
+        padding: 0.25rem;
+        border: none;
+    }
+
+    .toggle-button {
+        background: transparent;
+        border: 1px solid var(--border-color);
+        padding: 0.25rem 0.75rem;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-color);
+        transition: all 0.2s ease;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+
+    .toggle-button input {
+        display: none;
+    }
+
+    .toggle-button input:checked + span {
+        background: transparent;
+        color: var(--accent-color);
+    }
+
+    .toggle-button:hover {
+        border-color: var(--accent-color);
+        background: transparent;
+    }
+
+    .toggle-button span {
+        font-weight: normal;  
+    }
+
+    .language-options {
+        display: flex;
+        gap: 0.5rem;  
+    }
+
+    .language-button {
+        background: transparent;
+        border: 1px solid var(--border-color);
+        padding: 0.25rem 0.75rem;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-color);
+        transition: all 0.2s ease;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+
+    .language-button.active {
+        color: var(--accent-color);
+        border-color: var(--border-color);
+        background: transparent;
+    }
+
+    .language-button:hover {
+        border-color: var(--accent-color);
+        background: transparent;
     }
 
     .form-grid {
@@ -72,14 +147,9 @@
         margin-bottom: 0;  
         padding: 1rem;
         background: var(--secondary-color);
-        border-radius: 8px;
-        transition: transform 0.2s ease;
-        position: relative;
-    }
-
-    .form-group:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        box-shadow: none;
     }
 
     label {
@@ -90,18 +160,19 @@
 
     input[type="number"], select, input[type="text"] {
         width: 100%;
-        padding: 0.5rem;
+        padding: 8px 12px;
+        background: #FFFFFF;
         border: 1px solid var(--border-color);
         border-radius: 4px;
         font-size: 1rem;
-        transition: all 0.3s ease;
+        transition: border-color 0.2s ease;
         box-sizing: border-box;
     }
 
     input[type="number"]:focus, select:focus, input[type="text"]:focus {
         outline: none;
         border-color: var(--accent-color);
-        box-shadow: 0 0 0 2px rgba(46,139,87,0.1);
+        box-shadow: 0 0 0 2px rgba(111, 79, 242, 0.1);
     }
 
     .duration-fields {
@@ -134,7 +205,7 @@
         grid-column: 1 / -1;  
         text-align: center;   
         margin-top: 1rem;     
-        margin-bottom: 1rem;  
+        margin-bottom: 0.5rem;  
     }
 
     button {
@@ -143,34 +214,33 @@
         border: none;
         padding: 1rem;
         font-size: 1.1rem;
-        letter-spacing: 0.5px;
+        letter-spacing: normal;
         font-weight: 500;
         border-radius: 4px;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: background-color 0.2s ease;
         width: 100%;         
         max-width: 100%;     
         margin: 0 auto;      
+        font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif;
     }
 
     button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(46,139,87,0.2);
+        background-color: var(--dark-accent-color);
     }
 
     #result {
-        background: var(--card-color);
+        background: var(--secondary-color);
         border: 1px solid var(--border-color);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        margin-top: 0;  
-        padding: 2rem 1.5rem 4rem; 
+        border-radius: 4px;  
+        padding: 2rem 1.5rem 2rem;
         grid-column: 1 / -1;
         display: none;
         opacity: 0;
         transform: translateY(20px);
         transition: opacity 0.5s ease, transform 0.5s ease;
         position: relative;  
-        border-radius: 8px;  
+        margin-top: 1rem;
     }
 
     #result.show {
@@ -180,65 +250,83 @@
     }
 
     #result h3 {
-        color: var(--accent-color);
+        color: var(--text-color);
         margin-top: 0;
+        font-weight: 600;
+    }
+
+    #result p {
+        margin: 1.5rem 0;
+        line-height: 1.6;
+    }
+
+    .result-content {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+
+    .action-buttons {
+        position: static;  
+        display: flex;
+        gap: 1rem; 
+        justify-content: flex-end;
+        margin-top: 1.5rem; 
+        margin-bottom: 1.5rem; 
     }
 
     .electrolyte-table {
         width: 100%;
-        border-collapse: collapse;
-        margin: 1rem 0;
+        border-collapse: separate; 
+        border-spacing: 0;
+        margin: 1.5rem 0; 
+        background: white;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
     }
 
     .electrolyte-table th,
     .electrolyte-table td {
-        padding: 0.75rem;
+        padding: 1rem; 
         text-align: left;
         border-bottom: 1px solid var(--border-color);
+        color: var(--text-color);
     }
 
-.electrolyte-table .section-header th {
-    background-color: var(--accent-color);
-    color: white;
-    padding: 0.75rem;
-    text-align: left;
-    font-weight: 600;
-} 
-.electrolyte-table th {
-    background-color: var(--secondary-color);
-    font-weight: 600;
-}
+    .electrolyte-table .section-header th {
+        background-color: #4A4A4A;
+        color: white;
+        font-weight: 600;
+        padding: 1rem;
+    } 
 
-    .electrolyte-table tr:hover {
-        background-color: var(--hover-color);
+    .electrolyte-table tr:not(.section-header) {
+        background-color: white;
     }
 
-    .electrolyte-table .total-row {
-        font-weight: 700;
+    .electrolyte-table th {
         background-color: var(--secondary-color);
+        font-weight: 600;
+    }
+
+    .electrolyte-table td:nth-child(2),
+    .electrolyte-table td:nth-child(3),
+    .electrolyte-table th:nth-child(2),
+    .electrolyte-table th:nth-child(3) {
+        text-align: right;
     }
 
     .electrolyte-table i {
-        width: 20px;
-        color: var(--accent-color);
         margin-right: 0.5rem;
+        color: var(--accent-color);
+        opacity: 0.8;
     }
 
     footer {
-        background-color: var(--primary-color);
-        color: var(--text-color);
-        border-top: 1px solid var(--border-color);
-        text-align: center;
-        padding: 1rem;
-        margin-top: 2rem;
-    }
-
-    .unit-label {
-        position: relative;
-        display: inline-block;
-        margin-left: 0.5rem;
-        color: #666;
-        padding: 0.5rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
     }
 
     .help-text {
@@ -260,37 +348,6 @@
         text-decoration: underline;
     }
 
-    .help-text .fa-external-link-alt {
-        font-size: 0.8em;
-        margin-left: 3px;
-    }
-
-    input[type="radio"] {
-        accent-color: var(--accent-color);
-        cursor: pointer;
-    }
-
-    .unit-toggle label {
-        cursor: pointer;
-        transition: color 0.3s ease;
-    }
-
-    .unit-toggle label:hover {
-        color: var(--accent-color);
-    }
-
-    @media (max-width: 1024px) {
-        .content-wrapper {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .form-grid {
-            grid-template-columns: 1fr;  
-        }
-    }
-
     #result ul {
         list-style-type: none;
         padding-left: 0;
@@ -305,132 +362,73 @@
         line-height: 1.4;
     }
 
-    #result ul li i {
-        color: var(--accent-color);
-        margin-top: 0.25rem;
-        width: 20px;
-        text-align: center;
-    }
-
     #result h4 {
-        color: var(--accent-color);
+        color: var(--text-color);
         margin-top: 1.5rem;
         margin-bottom: 1rem;
         font-size: 1.1rem;
     }
 
     .copy-button {
-        background: none;
-        border: none;
-        padding: 0.5rem 1rem;
-        cursor: pointer;
+        background: var(--secondary-color);
+        border: 1px solid var(--border-color);
+        color: var(--text-color);
+        padding: 8px 16px;
+        border-radius: 4px;
         transition: all 0.2s ease;
-        color: #666;  
-        font-size: 0.9rem;  
         display: inline-flex; 
         align-items: center;
         gap: 0.5rem;
-        box-shadow: none;
-        white-space: nowrap; 
+        cursor: pointer;
+        white-space: nowrap;
+        font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif;
     }
 
     .copy-button:hover {
-        transform: translateY(0);
-        opacity: 0.7;
-        box-shadow: none;
+        background: var(--hover-color);
+        border-color: var(--accent-color);
     }
 
-    .result-content {
-        margin-bottom: 2rem; 
-    }
-    
-    .action-buttons {
-        position: absolute;
-        bottom: 1.5rem;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 2rem;
-    }
-
-    .adventure-message {
-        font-style: italic;
-        font-weight: bold;
+    h2 i {
+        margin-right: 0.5rem;
         color: var(--accent-color);
-        margin-top: 1rem;
-        font-size: 1.1em;
-        text-align: center;
     }
 
-    .language-selector {
-        position: absolute;
-        top: 2rem;
-        right: 2rem;
-    }
-
-    .language-button {
-        background: none;
-        border: none;
+    main > p i {
+        margin-right: 0.5rem;
         color: var(--accent-color);
-        font-size: 1.2rem;
-        cursor: pointer;
-        padding: 0.5rem;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background-color 0.3s ease;
+        opacity: 0.8;
     }
 
-    .language-button:hover {
-        background-color: var(--secondary-color);
-        transform: none;
-        box-shadow: none;
+    .form-group label i {
+        margin-right: 0.5rem;
+        color: var(--accent-color);
+        opacity: 0.8;
     }
 
-    .language-dropdown {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: white;
-        border: 1px solid var(--border-color);
-        border-radius: 4px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        display: none;
-        z-index: 1000;
-        min-width: 120px;
+    .electrolyte-table tr td {
+        background-color: white;
     }
 
-    .language-dropdown.show {
-        display: block;
-    }
-
-    .language-dropdown a {
-        display: block;
-        padding: 0.5rem 1rem;
-        text-decoration: none;
-        color: var(--text-color);
-        transition: background-color 0.3s ease;
-    }
-
-    .language-dropdown a:hover {
-        background-color: var(--secondary-color);
+    @media (max-width: 768px) {
+        .form-grid {
+            grid-template-columns: 1fr;  
+        }
     }
 </style>
 </head>
 <body>
     <main>
-        <div class="language-selector">
-            <button class="language-button" id="languageButton">
-                <i class="fas fa-globe"></i>
-            </button>
-            <div class="language-dropdown" id="languageDropdown">
-                <a href="#" data-lang="en">English</a>
-                <a href="#" data-lang="fr">Français</a>
-                <a href="#" data-lang="es">Español</a>
-                <a href="#" data-lang="de">Deutsch</a>
+        <div class="toggle-controls">
+            <div class="unit-toggle">
+                <label class="toggle-button">
+                    <input type="radio" name="unit" value="metric" checked>
+                    <span>Metric</span>
+                </label>
+                <label class="toggle-button">
+                    <input type="radio" name="unit" value="imperial">
+                    <span>Imperial</span>
+                </label>
             </div>
         </div>
         <h2><i class="fas fa-tint"></i> Hydration Planner</h2>
@@ -439,17 +437,8 @@
         <div class="content-wrapper">
             <form id="hydrationForm">
                 <div class="form-grid">
-                    <div class="unit-toggle">
-                        <label>
-                            <input type="radio" name="unit" value="metric" checked> Metric
-                        </label>
-                        <label>
-                            <input type="radio" name="unit" value="imperial"> Imperial
-                        </label>
-                    </div>
-
                     <div class="form-group">
-                        <label for="distance"><i class="fas fa-route"></i> Run Distance:</label>
+                        <label for="distance"><i class="fas fa-route"></i> Run Distance</label>
                         <div class="input-wrapper">
                             <input type="number" id="distance" required min="0" step="0.1" value="10">
                             <span class="unit-label">km</span>
@@ -457,7 +446,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="elevation"><i class="fas fa-mountain"></i> Elevation Gain:</label>
+                        <label for="elevation"><i class="fas fa-mountain"></i> Elevation Gain</label>
                         <div class="input-wrapper">
                             <input type="number" id="elevation" required min="0" value="200">
                             <span class="unit-label">m</span>
@@ -465,7 +454,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="duration"><i class="fas fa-clock"></i> Estimated Duration:</label>
+                        <label for="duration"><i class="fas fa-clock"></i> Estimated Duration</label>
                         <div class="duration-fields">
                         <div class="input-wrapper">
                             <div class="duration-field" data-unit="hrs">
@@ -478,12 +467,11 @@
                                 <input type="number" id="duration-minutes" min="0" max="59" placeholder="Minutes" value="30">
                             </div>
                         </div>
-
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="weight"><i class="fas fa-weight"></i> Body Weight:</label>
+                        <label for="weight"><i class="fas fa-weight"></i> Body Weight</label>
                         <div class="input-wrapper">
                             <input type="number" id="weight" required min="0" value="70">
                             <span class="unit-label">kg</span>
@@ -491,7 +479,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="temperature"><i class="fas fa-thermometer-half"></i> Temperature:</label>
+                        <label for="temperature"><i class="fas fa-thermometer-half"></i> Temperature</label>
                         <div class="input-wrapper">
                             <input type="number" id="temperature" required min="-50" max="50" value="20">
                             <span class="unit-label">°C</span>
@@ -500,86 +488,86 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="humidity"><i class="fas fa-tint"></i> Relative Humidity:</label>
+                        <label for="humidity"><i class="fas fa-tint"></i> Relative Humidity</label>
                         <div class="input-wrapper">
                             <input type="number" id="humidity" min="0" max="100" value="50">
                             <span class="unit-label">%</span>
                         </div>
                         <p class="help-text">Need current humidity data? <a href="https://weather.com/fr-FR/temps/10jours/l/9099c1b5627805345616709675ec5798c45bbeea4662bf7860e0d65f5b8e6ba9" target="_blank">Check Weather.com <i class="fas fa-external-link-alt"></i></a></p>
-                        <p class="help-text">Humidity's like nature's sweat-o-meter. It affects how fast your sweat evaporates. Higher humidity? More sweat sticking around.</p>
                     </div>
 
                     <div class="button-container">
                         <button type="submit">Calculate Hydration Needs</button>
                     </div>
-
                 </div>
             </form>
 
             <div id="result" class="hidden">
                 <div class="result-content">
                     <h3><i class="fas fa-tint"></i> Your Hydration Plan</h3>
-                    <div class="action-buttons">
-                        <button class="copy-button" onclick="copyResults()" title="Copy results to clipboard">
-                            <i class="fas fa-copy"></i> Copy to clipboard
-                        </button>
-                        <button class="copy-button" onclick="downloadXLS()" title="Download as XLS">
-                            <i class="fas fa-file-excel"></i> Download .csv
-                        </button>
-                    </div>
                 </div>
-        <table class="electrolyte-table">
-            <tr class="section-header">
-                <th colspan="3">Fluid Intake</th>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <th>Per Hour</th>
-                <th>Total</th>
-            </tr>
-            <tr>
-                <td><i class="fas fa-glass-water"></i> Fluids</td>
-                <td id="hourlyFluidIntake"></td>
-                <td id="totalFluidIntake"></td>
-            </tr>
-            <tr class="section-header">
-                <th colspan="3">Electrolyte Intake</th>
-            </tr>
-            <tr>
-                <th>Electrolyte</th>
-                <th>Per Hour</th>
-                <th>Total</th>
-            </tr>
-            <tr>
-                <td><i class="fas fa-cube"></i> Sodium</td>
-                <td id="sodiumPerHour"></td>
-                <td id="sodiumTotal"></td>
-            </tr>
-            <tr>
-                <td><i class="fas fa-leaf"></i> Potassium</td>
-                <td id="potassiumPerHour"></td>
-                <td id="potassiumTotal"></td>
-            </tr>
-            <tr>
-                <td><i class="fas fa-vial"></i> Magnesium</td>
-                <td id="magnesiumPerHour"></td>
-                <td id="magnesiumTotal"></td>
-            </tr>
-            <tr>
-                <td><i class="fas fa-bone"></i> Calcium</td>
-                <td id="calciumPerHour"></td>
-                <td id="calciumTotal"></td>
-            </tr>
-        </table>
-        <p>Remember to start your run well-hydrated and adjust your intake based on how you feel during the run.</p>
-    </div>
+                <table class="electrolyte-table">
+                    <tr class="section-header">
+                        <th colspan="3">Water Intake</th>
+                    </tr>
+                    <tr>
+                        <th>Type</th>
+                        <th>Per Hour</th>
+                        <th>Total</th>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-glass-water"></i> Water</td>
+                        <td id="hourlyFluidIntake"></td>
+                        <td id="totalFluidIntake"></td>
+                    </tr>
+                    <tr class="section-header">
+                        <th colspan="3">Electrolyte Intake</th>
+                    </tr>
+                    <tr>
+                        <th>Type</th>
+                        <th>Per Hour</th>
+                        <th>Total</th>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-cube"></i> Sodium</td>
+                        <td id="sodiumPerHour"></td>
+                        <td id="sodiumTotal"></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-leaf"></i> Potassium</td>
+                        <td id="potassiumPerHour"></td>
+                        <td id="potassiumTotal"></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-vial"></i> Magnesium</td>
+                        <td id="magnesiumPerHour"></td>
+                        <td id="magnesiumTotal"></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-bone"></i> Calcium</td>
+                        <td id="calciumPerHour"></td>
+                        <td id="calciumTotal"></td>
+                    </tr>
+                </table>
+                <div class="action-buttons">
+                    <button class="copy-button" onclick="copyResults()" title="Copy results to clipboard">
+                        <i class="fas fa-copy"></i> Copy to clipboard
+                    </button>
+                    <button class="copy-button" onclick="downloadXLS()" title="Download as XLS">
+                        <i class="fas fa-file-excel"></i> Download .csv
+                    </button>
                 </div>
+                <p>Remember to start your run well-hydrated and adjust your intake based on how you feel during the run.</p>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2023 The Runner Jar. All rights reserved.</p>
+        <p>&copy; 2024 Noemie Prin. All rights reserved.</p>
+        <div class="language-options">
+            <button class="language-button active" data-lang="en">EN</button>
+            <button class="language-button" data-lang="fr">FR</button>
+        </div>
     </footer>
 
     <script>
@@ -637,7 +625,7 @@
             const isImperial = document.querySelector('input[name="unit"]:checked').value === 'imperial';
             const distance = parseFloat(document.getElementById('distance').value);
             const temperature = parseFloat(document.getElementById('temperature').value);
-            const humidity = parseFloat(document.getElementById('humidity').value) || 50; // Default to 50% if not provided
+            const humidity = parseFloat(document.getElementById('humidity').value) || 50; 
             const elevation = parseFloat(document.getElementById('elevation').value);
             const weight = parseFloat(document.getElementById('weight').value);
 
@@ -658,10 +646,10 @@
 
             const sodiumPerHour = Math.round((hourlyRate / 1000) * 500);
             const potassiumPerHour = Math.round((hourlyRate / 1000) * 200);
-            const magnesiumPerHour = Math.round((hourlyRate / 1000) * 25); // 25mg per liter
-            const calciumPerHour = Math.round((hourlyRate / 1000) * 15);   // 15mg per liter
+            const magnesiumPerHour = Math.round((hourlyRate / 1000) * 25);
+            const calciumPerHour = Math.round((hourlyRate / 1000) * 15); 
 
-            const totalDuration = duration; // hours
+            const totalDuration = duration; 
             const sodiumTotal = Math.round(sodiumPerHour * totalDuration);
             const potassiumTotal = Math.round(potassiumPerHour * totalDuration);
             const magnesiumTotal = Math.round(magnesiumPerHour * totalDuration);
@@ -673,8 +661,26 @@
             const totalOz = totalLiters * 33.814;
             const hourlyOz = hourlyRate / 29.5735;
 
-            document.getElementById('totalFluidIntake').innerHTML = `${Math.round(totalHydration)} ml (${totalLiters.toFixed(2)} liters)${isImperial ? ` or ${Math.round(totalOz)} fl oz` : ''}`;
-            document.getElementById('hourlyFluidIntake').innerHTML = `${Math.round(hourlyRate)} ml/hour${isImperial ? ` or ${hourlyOz.toFixed(1)} fl oz/hour` : ''}`;
+            const lang = document.querySelector('.language-button.active').dataset.lang;
+
+            function formatHydrationValue(value, unit, isImperial, lang) {
+                if (unit.includes('ml')) {
+                    return `${Math.round(value)} ml`;
+                }
+                if (lang === 'fr') {
+                    return `${Math.round(value).toString().replace('.', ',')} ${unit}`;
+                }
+                return `${Math.round(value)} ${unit}`;
+            }
+
+            document.getElementById('totalFluidIntake').innerHTML = 
+                `${formatHydrationValue(totalHydration, 'ml', isImperial, lang)} (${totalLiters.toFixed(2).replace('.', ',')} litres)${
+                    isImperial ? ` or ${Math.round(totalOz)} fl oz` : ''
+                }`;
+            document.getElementById('hourlyFluidIntake').innerHTML = 
+                `${formatHydrationValue(hourlyRate, 'ml', isImperial, lang)}${
+                    isImperial ? ` or ${hourlyOz.toFixed(1).replace('.', ',')} fl oz` : ''
+                }`;
             document.getElementById('sodiumPerHour').textContent = `${sodiumPerHour} mg`;
             document.getElementById('sodiumTotal').textContent = `${sodiumTotal} mg`;
             document.getElementById('potassiumPerHour').textContent = `${potassiumPerHour} mg`;
@@ -745,22 +751,175 @@
             document.body.removeChild(link);
         }
 
-        const languageButton = document.getElementById('languageButton');
-        const languageDropdown = document.getElementById('languageDropdown');
-
-        languageButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            languageDropdown.classList.toggle('show');
+        document.querySelectorAll('.language-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const lang = button.dataset.lang;
+                document.querySelectorAll('.language-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+                updateLanguage(lang);
+            });
         });
 
-        document.addEventListener('click', (e) => {
-            if (!languageDropdown.contains(e.target)) {
-                languageDropdown.classList.remove('show');
+        const translations = {
+            en: {
+                title: "Hydration Planner",
+                intro: "Plan your hydration strategy for your next trail run with this interactive tool. Enter your run details and personal factors to receive a customized hydration recommendation.",
+                distance: "Run Distance",
+                elevation: "Elevation Gain",
+                duration: "Estimated Duration",
+                weight: "Body Weight",
+                temperature: "Temperature",
+                humidity: "Relative Humidity",
+                calculate: "Calculate Hydration Needs",
+                hydrationPlan: "Your Hydration Plan",
+                fluidIntakeSection: "Water Intake",
+                electrolyteIntakeSection: "Electrolyte Intake",
+                fluidsRow: "Water",
+                sodiumRow: "Sodium",
+                potassiumRow: "Potassium",
+                magnesiumRow: "Magnesium",
+                calciumRow: "Calcium",
+                typeHeader: "Type",
+                perHourHeader: "Per Hour",
+                totalHeader: "Total",
+                waterIntakeHeader: "Water Intake",
+                electrolyteIntakeHeader: "Electrolyte Intake",
+                reminder: "Remember to start your run well-hydrated and adjust your intake based on how you feel during the run.",
+                needWeather: "Need current temperature data?",
+                needHumidity: "Need current humidity data?",
+                checkWeather: "Check Weather.com",
+                copyButton: "Copy to clipboard",
+                downloadButton: "Download .csv",
+                hourUnit: "hour", 
+                waterRow: "Water",
+                icons: {
+                    sodium: 'cube',
+                    potassium: 'leaf',
+                    magnesium: 'vial',
+                    calcium: 'bone'
+                }
+            },
+            fr: {
+                title: "Planificateur d'Hydratation",
+                intro: "Planifiez votre stratégie d'hydratation pour votre prochaine course avec cet outil interactif. Entrez les détails de votre course et vos facteurs personnels pour recevoir une recommandation d'hydratation personnalisée.",
+                distance: "Distance de course",
+                elevation: "Dénivelé",
+                duration: "Durée estimée",
+                weight: "Poids corporel",
+                temperature: "Température",
+                humidity: "Humidité relative",
+                calculate: "Calculer les besoins en hydratation",
+                hydrationPlan: "Votre Plan d'Hydratation",
+                fluidIntakeSection: "Apport en Eau",
+                electrolyteIntakeSection: "Apport en Électrolytes",
+                fluidsRow: "Eau",
+                sodiumRow: "Sodium",
+                potassiumRow: "Potassium",
+                magnesiumRow: "Magnésium",
+                calciumRow: "Calcium",
+                typeHeader: "Type",
+                perHourHeader: "Par Heure",
+                totalHeader: "Total",
+                waterIntakeHeader: "Apport en Eau",
+                electrolyteIntakeHeader: "Apport en Électrolytes",
+                reminder: "N'oubliez pas de commencer votre course bien hydraté et d'ajuster votre consommation en fonction de vos sensations pendant la course.",
+                needWeather: "Besoin des données de température actuelles ?",
+                needHumidity: "Besoin des données d'humidité actuelles ?",
+                checkWeather: "Consulter Weather.com",
+                copyButton: "Copier dans le presse-papiers",
+                downloadButton: "Télécharger .csv",
+                hourUnit: "heure", 
+                waterRow: "Eau",
+                icons: {
+                    sodium: 'cube',
+                    potassium: 'leaf',
+                    magnesium: 'vial',
+                    calcium: 'bone'
+                }
             }
-        });
+        };
 
-        languageDropdown.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
+        function updateLanguage(lang) {
+            const elements = {
+                title: document.querySelector('h2'),
+                intro: document.querySelector('main > p'),
+                distanceLabel: document.querySelector('label[for="distance"]'),
+                elevationLabel: document.querySelector('label[for="elevation"]'),
+                durationLabel: document.querySelector('label[for="duration"]'),
+                weightLabel: document.querySelector('label[for="weight"]'),
+                temperatureLabel: document.querySelector('label[for="temperature"]'),
+                humidityLabel: document.querySelector('label[for="humidity"]'),
+                calculateButton: document.querySelector('button[type="submit"]'),
+                resultTitle: document.querySelector('#result h3'),
+                resultReminder: document.querySelector('#result p'),
+                copyButton: document.querySelector('.copy-button'),
+                downloadButton: document.querySelector('.copy-button:last-child')
+            };
+
+            if (elements.title) elements.title.innerHTML = `<i class="fas fa-tint"></i> ${translations[lang].title}`;
+            if (elements.intro) elements.intro.textContent = translations[lang].intro;
+            if (elements.distanceLabel) elements.distanceLabel.innerHTML = `<i class="fas fa-route"></i> ${translations[lang].distance}`;
+            if (elements.elevationLabel) elements.elevationLabel.innerHTML = `<i class="fas fa-mountain"></i> ${translations[lang].elevation}`;
+            if (elements.durationLabel) elements.durationLabel.innerHTML = `<i class="fas fa-clock"></i> ${translations[lang].duration}`;
+            if (elements.weightLabel) elements.weightLabel.innerHTML = `<i class="fas fa-weight"></i> ${translations[lang].weight}`;
+            if (elements.temperatureLabel) elements.temperatureLabel.innerHTML = `<i class="fas fa-thermometer-half"></i> ${translations[lang].temperature}`;
+            if (elements.humidityLabel) elements.humidityLabel.innerHTML = `<i class="fas fa-tint"></i> ${translations[lang].humidity}`;
+            if (elements.calculateButton) elements.calculateButton.textContent = translations[lang].calculate;
+            if (elements.resultTitle) elements.resultTitle.innerHTML = `<i class="fas fa-tint"></i> ${translations[lang].hydrationPlan}`;
+            if (elements.resultReminder) elements.resultReminder.textContent = translations[lang].reminder;
+            if (elements.copyButton) elements.copyButton.innerHTML = `<i class="fas fa-copy"></i> ${translations[lang].copyButton}`;
+            if (elements.downloadButton) elements.downloadButton.innerHTML = `<i class="fas fa-file-excel"></i> ${translations[lang].downloadButton}`;
+
+            document.querySelectorAll('.help-text').forEach((helpText, index) => {
+                if (helpText) {
+                    const text = index === 0 ? translations[lang].needWeather : translations[lang].needHumidity;
+                    helpText.innerHTML = `${text} <a href="https://weather.com/fr-FR/temps/10jours/l/9099c1b5627805345616709675ec5798c45bbeea4662bf7860e0d65f5b8e6ba9" target="_blank">${translations[lang].checkWeather} <i class="fas fa-external-link-alt"></i></a>`;
+                }
+            });
+
+            const table = document.querySelector('.electrolyte-table');
+            if (table) {
+                const sectionHeaders = table.querySelectorAll('.section-header th');
+                if (sectionHeaders.length >= 2) {
+                    sectionHeaders[0].textContent = translations[lang].waterIntakeHeader;
+                    sectionHeaders[1].textContent = translations[lang].electrolyteIntakeHeader;
+                }
+
+                const allColumnHeaders = table.querySelectorAll('tr:not(.section-header) th');
+                allColumnHeaders.forEach(header => {
+                    if (header.textContent.includes('Per Hour')) {
+                        header.textContent = lang === 'fr' ? translations[lang].perHourHeader : translations[lang].perHourHeader;
+                    }
+                });
+
+                const rows = {
+                    water: table.querySelector('tr:nth-child(4) td:first-child'),
+                    sodium: table.querySelector('tr:nth-child(7) td:first-child'),
+                    potassium: table.querySelector('tr:nth-child(8) td:first-child'),
+                    magnesium: table.querySelector('tr:nth-child(9) td:first-child'),
+                    calcium: table.querySelector('tr:nth-child(10) td:first-child')
+                };
+
+                if (rows.water) {
+                    rows.water.innerHTML = `<i class="fas fa-glass-water"></i> ${translations[lang].waterRow}`;
+                }
+                if (rows.sodium) {
+                    rows.sodium.innerHTML = `<i class="fas fa-${translations[lang].icons.sodium}"></i> ${translations[lang].sodiumRow}`;
+                }
+                if (rows.potassium) {
+                    rows.potassium.innerHTML = `<i class="fas fa-${translations[lang].icons.potassium}"></i> ${translations[lang].potassiumRow}`;
+                }
+                if (rows.magnesium) {
+                    rows.magnesium.innerHTML = `<i class="fas fa-${translations[lang].icons.magnesium}"></i> ${translations[lang].magnesiumRow}`;
+                }
+                if (rows.calcium) {
+                    rows.calcium.innerHTML = `<i class="fas fa-${translations[lang].icons.calcium}"></i> ${translations[lang].calciumRow}`;
+                }
+            }
+        }
+
+        updateLanguage('en');
     </script>
 </body></html>
