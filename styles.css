@@ -1,0 +1,412 @@
+
+    :root {
+        "keyword">--primary-color: "number">#37352F;
+        "keyword">--secondary-color: "number">#F7F6F3;
+        "keyword">--text-color: "number">#37352F;
+        "keyword">--background-color: "number">#FFFFFF;
+        "keyword">--card-color: "number">#F7F6F3;
+        "keyword">--border-color: "number">#E9E9E8;
+        "keyword">--hover-color: "number">#EBEAEA;
+        "keyword">--accent-color: "number">#6F4FF2;
+        "keyword">--dark-accent-color: "number">#5B3ED6;
+    }
+
+    body {
+        "keyword">font-family: &"number">#039;Montserrat&"number">#039;, -apple-system, BlinkMacSystemFont, &"number">#039;Segoe UI&"number">#039;, Helvetica, &"number">#039;Apple Color Emoji&"number">#039;, Arial, sans-serif, &"number">#039;Segoe UI Emoji&"number">#039;;
+        "keyword">color: var(--text-color);
+        "keyword">background-color: var(--background-color);
+        "keyword">line-height: "number">1."number">5;
+        "keyword">margin: "number">0;
+        "keyword">padding: "number">0;
+    }
+
+    main {
+        "keyword">max-width: "number">800px;
+        "keyword">margin: "number">3rem auto;  
+        "keyword">padding: "number">2rem "number">1rem "number">0;  
+        "keyword">position: relative;
+    }
+
+    h"number">2 {
+        "keyword">color: var(--text-color);
+        "keyword">border-bottom: "number">1px solid var(--border-color);
+        "keyword">font-weight: "number">600;
+        "keyword">margin-top: "number">2rem;  
+        "keyword">margin-bottom: "number">1."number">5rem;  
+        "keyword">padding-bottom: "number">1rem;
+        "keyword">font-size: "number">1."number">8rem;  
+    }
+
+    main > p {
+        "keyword">margin-bottom: "number">3rem;  
+        "keyword">font-size: "number">1."number">1rem;   
+        "keyword">color: "number">#666;         
+        "keyword">line-height: "number">1."number">6;    
+    }
+
+    .content-wrapper {
+        "keyword">display: grid;
+        "keyword">grid-template-columns: "number">1fr;  
+        "keyword">gap: "number">1rem; 
+    }
+    
+    .toggle-controls {
+        "keyword">position: absolute;
+        "keyword">top: "number">1."number">5rem;         
+        "keyword">right: "number">1rem;
+        "keyword">display: flex;
+        "keyword">gap: "number">0."number">5rem;
+        "keyword">align-items: center;
+        "keyword">z-index: "number">1;
+    }
+
+    .unit-toggle {
+        "keyword">display: flex;
+        "keyword">gap: "number">0."number">5rem;
+        "keyword">background: transparent;
+        "keyword">padding: "number">0."number">25rem;
+        "keyword">border: none;
+    }
+
+    .toggle-button {
+        "keyword">background: transparent;
+        "keyword">border: "number">1px solid var(--border-color);
+        "keyword">padding: "number">0."number">25rem "number">0."number">75rem;
+        "keyword">font-size: "number">0."number">9rem;
+        "keyword">display: flex;
+        "keyword">align-items: center;
+        "keyword">gap: "number">0."number">5rem;
+        "keyword">color: var(--text-color);
+        "keyword">transition: all "number">0."number">2s ease;
+        "keyword">cursor: pointer;
+        "keyword">border-radius: "number">3px;
+    }
+
+    .toggle-button input {
+        "keyword">display: none;
+    }
+
+    .toggle-button "keyword">input:checked + span {
+        "keyword">background: transparent;
+        "keyword">color: var(--accent-color);
+    }
+
+    ."keyword">toggle-button:hover {
+        "keyword">border-color: var(--accent-color);
+        "keyword">background: transparent;
+    }
+
+    .toggle-button span {
+        "keyword">font-weight: normal;  
+    }
+
+    .language-options {
+        "keyword">display: flex;
+        "keyword">gap: "number">0."number">5rem;  
+    }
+
+    .language-button {
+        "keyword">background: transparent;
+        "keyword">border: "number">1px solid var(--border-color);
+        "keyword">padding: "number">0."number">25rem "number">0."number">75rem;
+        "keyword">font-size: "number">0."number">9rem;
+        "keyword">display: flex;
+        "keyword">align-items: center;
+        "keyword">gap: "number">0."number">5rem;
+        "keyword">color: var(--text-color);
+        "keyword">transition: all "number">0."number">2s ease;
+        "keyword">cursor: pointer;
+        "keyword">border-radius: "number">3px;
+    }
+
+    .language-button.active {
+        "keyword">color: var(--accent-color);
+        "keyword">border-color: var(--border-color);
+        "keyword">background: transparent;
+    }
+
+    ."keyword">language-button:hover {
+        "keyword">border-color: var(--accent-color);
+        "keyword">background: transparent;
+    }
+
+    .form-grid {
+        "keyword">display: grid;
+        "keyword">grid-template-columns: "number">1fr "number">1fr;  
+        "keyword">gap: "number">1rem;
+        "keyword">margin-bottom: "number">1rem;  
+    }
+
+    .form-group {
+        "keyword">margin-bottom: "number">0;  
+        "keyword">padding: "number">1rem;
+        "keyword">background: var(--secondary-color);
+        "keyword">border: "number">1px solid var(--border-color);
+        "keyword">border-radius: "number">4px;
+        "keyword">box-shadow: none;
+    }
+
+    label {
+        "keyword">display: block;
+        "keyword">margin-bottom: "number">0."number">5rem;
+        "keyword">font-weight: "number">700;
+    }
+
+    input[type="number"], select, input[type="text"] {
+        "keyword">width: "number">100%;
+        "keyword">padding: "number">8px "number">12px;
+        "keyword">background: "number">#FFFFFF;
+        "keyword">border: "number">1px solid var(--border-color);
+        "keyword">border-radius: "number">4px;
+        "keyword">font-size: "number">1rem;
+        "keyword">transition: border-color "number">0."number">2s ease;
+        "keyword">box-sizing: border-box;
+    }
+
+    input[type="number"]:focus, "keyword">select:focus, input[type="text"]:focus {
+        "keyword">outline: none;
+        "keyword">border-color: var(--accent-color);
+        "keyword">box-shadow: "number">0 "number">0 "number">0 "number">2px rgba("number">111, "number">79, "number">242, "number">0."number">1);
+    }
+
+    .duration-fields {
+        "keyword">display: grid;
+        "keyword">grid-template-columns: "number">1fr "number">1fr;
+        "keyword">gap: "number">1rem;
+    }
+
+    .duration-field {
+        "keyword">position: relative;
+    }
+
+    .duration-field input {
+        "keyword">width: "number">100%;
+        "keyword">padding-right: "number">3."number">5rem;
+    }
+
+    ."keyword">duration-field::after {
+        "keyword">content: attr(data-unit);
+        "keyword">position: absolute;
+        "keyword">right: "number">1rem;
+        "keyword">top: "number">50%;
+        "keyword">transform: translateY(-"number">50%);
+        "keyword">color: "number">#666;
+        "keyword">pointer-events: none;
+        "keyword">padding: "number">0."number">5rem "number">0;  
+    }
+
+    .button-container {
+        "keyword">grid-column: "number">1 / -"number">1;  
+        "keyword">text-align: center;   
+        "keyword">margin-top: "number">1rem;     
+        "keyword">margin-bottom: "number">0."number">5rem;  
+    }
+
+    button {
+        "keyword">background-color: var(--accent-color);
+        "keyword">color: white;
+        "keyword">border: none;
+        "keyword">padding: "number">1rem;
+        "keyword">font-size: "number">1."number">1rem;
+        "keyword">letter-spacing: normal;
+        "keyword">font-weight: "number">500;
+        "keyword">border-radius: "number">4px;
+        "keyword">cursor: pointer;
+        "keyword">transition: background-color "number">0."number">2s ease;
+        "keyword">width: "number">100%;         
+        "keyword">max-width: "number">100%;     
+        "keyword">margin: "number">0 auto;      
+        "keyword">font-family: &"number">#039;Montserrat&"number">#039;, -apple-system, BlinkMacSystemFont, &"number">#039;Segoe UI&"number">#039;, Helvetica, sans-serif;
+    }
+
+    "keyword">button:hover {
+        "keyword">background-color: var(--dark-accent-color);
+    }
+
+    #result {
+        "keyword">background: var(--secondary-color);
+        "keyword">border: "number">1px solid var(--border-color);
+        "keyword">border-radius: "number">4px;  
+        "keyword">padding: "number">2rem "number">1."number">5rem "number">2rem;
+        "keyword">grid-column: "number">1 / -"number">1;
+        "keyword">display: none;
+        "keyword">opacity: "number">0;
+        "keyword">transform: translateY("number">20px);
+        "keyword">transition: opacity "number">0."number">5s ease, transform "number">0."number">5s ease;
+        "keyword">position: relative;  
+        "keyword">margin-top: "number">1rem;
+    }
+
+    #result.show {
+        "keyword">display: block;
+        "keyword">opacity: "number">1;
+        "keyword">transform: translateY("number">0);
+    }
+
+    #result h"number">3 {
+        "keyword">color: var(--text-color);
+        "keyword">margin-top: "number">0;
+        "keyword">font-weight: "number">600;
+    }
+
+    #result p {
+        "keyword">margin: "number">1."number">5rem "number">0;
+        "keyword">line-height: "number">1."number">6;
+    }
+
+    .result-content {
+        "keyword">position: relative;
+        "keyword">margin-bottom: "number">1rem;
+    }
+
+    .action-buttons {
+        "keyword">position: static;  
+        "keyword">display: flex;
+        "keyword">gap: "number">1rem; 
+        "keyword">justify-content: flex-end;
+        "keyword">margin-top: "number">1."number">5rem; 
+        "keyword">margin-bottom: "number">1."number">5rem; 
+    }
+
+    .electrolyte-table {
+        "keyword">width: "number">100%;
+        "keyword">border-collapse: separate; 
+        "keyword">border-spacing: "number">0;
+        "keyword">margin: "number">1."number">5rem "number">0; 
+        "keyword">background: white;
+        "keyword">border: "number">1px solid var(--border-color);
+        "keyword">border-radius: "number">4px;
+        "keyword">box-shadow: "number">0 "number">1px "number">3px rgba("number">0,"number">0,"number">0,"number">0."number">1); 
+    }
+
+    .electrolyte-table th,
+    .electrolyte-table td {
+        "keyword">padding: "number">1rem; 
+        "keyword">text-align: left;
+        "keyword">border-bottom: "number">1px solid var(--border-color);
+        "keyword">color: var(--text-color);
+    }
+
+    .electrolyte-table .section-header th {
+        "keyword">background-color: "number">#4A4A4A;
+        "keyword">color: white;
+        "keyword">font-weight: "number">600;
+        "keyword">padding: "number">1rem;
+    } 
+
+    .electrolyte-table "keyword">tr:not(.section-header) {
+        "keyword">background-color: white;
+    }
+
+    .electrolyte-table th {
+        "keyword">background-color: var(--secondary-color);
+        "keyword">font-weight: "number">600;
+    }
+
+    .electrolyte-table "keyword">td:nth-child("number">2),
+    .electrolyte-table "keyword">td:nth-child("number">3),
+    .electrolyte-table "keyword">th:nth-child("number">2),
+    .electrolyte-table "keyword">th:nth-child("number">3) {
+        "keyword">text-align: right;
+    }
+
+    .electrolyte-table i {
+        "keyword">margin-right: "number">0."number">5rem;
+        "keyword">color: var(--accent-color);
+        "keyword">opacity: "number">0."number">8;
+    }
+
+    footer {
+        "keyword">display: flex;
+        "keyword">justify-content: space-between;
+        "keyword">align-items: center;
+        "keyword">padding: "number">1rem "number">2rem;
+    }
+
+    .help-text {
+        "keyword">margin-top: "number">0."number">5rem;
+        "keyword">clear: both;
+        "keyword">position: relative;
+        "keyword">padding-top: "number">0."number">5rem;
+        "keyword">font-size: "number">0."number">9rem;  
+        "keyword">color: "number">#666;        
+    }
+
+    .help-text a {
+        "keyword">color: var(--accent-color);
+        "keyword">text-decoration: none;
+        "keyword">transition: color "number">0."number">3s ease;
+    }
+
+    .help-text "keyword">a:hover {
+        "keyword">text-decoration: underline;
+    }
+
+    #result ul {
+        "keyword">list-style-type: none;
+        "keyword">padding-left: "number">0;
+        "keyword">margin-bottom: "number">1."number">5rem;
+    }
+
+    #result ul li {
+        "keyword">margin-bottom: "number">1rem;
+        "keyword">display: flex;
+        "keyword">align-items: flex-start;
+        "keyword">gap: "number">0."number">8rem;
+        "keyword">line-height: "number">1."number">4;
+    }
+
+    #result h"number">4 {
+        "keyword">color: var(--text-color);
+        "keyword">margin-top: "number">1."number">5rem;
+        "keyword">margin-bottom: "number">1rem;
+        "keyword">font-size: "number">1."number">1rem;
+    }
+
+    .copy-button {
+        "keyword">background: var(--secondary-color);
+        "keyword">border: "number">1px solid var(--border-color);
+        "keyword">color: var(--text-color);
+        "keyword">padding: "number">8px "number">16px;
+        "keyword">border-radius: "number">4px;
+        "keyword">transition: all "number">0."number">2s ease;
+        "keyword">display: inline-flex; 
+        "keyword">align-items: center;
+        "keyword">gap: "number">0."number">5rem;
+        "keyword">cursor: pointer;
+        "keyword">white-space: nowrap;
+        "keyword">font-family: &"number">#039;Montserrat&"number">#039;, -apple-system, BlinkMacSystemFont, &"number">#039;Segoe UI&"number">#039;, Helvetica, sans-serif;
+    }
+
+    ."keyword">copy-button:hover {
+        "keyword">background: var(--hover-color);
+        "keyword">border-color: var(--accent-color);
+    }
+
+    h"number">2 i {
+        "keyword">margin-right: "number">0."number">5rem;
+        "keyword">color: var(--accent-color);
+    }
+
+    main > p i {
+        "keyword">margin-right: "number">0."number">5rem;
+        "keyword">color: var(--accent-color);
+        "keyword">opacity: "number">0."number">8;
+    }
+
+    .form-group label i {
+        "keyword">margin-right: "number">0."number">5rem;
+        "keyword">color: var(--accent-color);
+        "keyword">opacity: "number">0."number">8;
+    }
+
+    .electrolyte-table tr td {
+        "keyword">background-color: white;
+    }
+
+    @media ("keyword">max-width: "number">768px) {
+        .form-grid {
+            "keyword">grid-template-columns: "number">1fr;  
+        }
+    }
+
